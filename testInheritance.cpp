@@ -3,7 +3,7 @@
 class Base
 {
 public:
-    void test(int value=10)
+    virtual void test(int value=10)
     {
         printf("%d\n",value);
     }
