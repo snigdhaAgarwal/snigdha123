@@ -14,7 +14,7 @@ class DerivedChangeDefault : public Base
 public:
     void test(int value=20)
     {
-        printf("%d\n",value);
+        printf("DerivedChangeDefault: %d\n",value);
     }
 };
 
