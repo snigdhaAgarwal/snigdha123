@@ -5,19 +5,7 @@ class Integer
 {
 public:
     Integer(int v = 0) : _val(v) { }
-<<<<<<< HEAD
-    Integer(const Integer& v) : _val(v._val) 
-    { 
-        cout<<"Copy Constructor Called with value "<<_val<<endl;
-        cout<<"Stack Trace"<<endl;
-
-        void* btarray[10];
-        size_t size = backtrace(btarray, 10);
-        backtrace_symbols_fd(btarray, size, 2);
-    }
-=======
     Integer(const Integer& v) : _val(v._val) { }
->>>>>>> 8285ced6338f642c1939d4b8f4519a513bed9e2c
     Integer& operator++()
     {
         ++_val;
