@@ -5,6 +5,7 @@ class Integer
 {
 public:
     Integer(int v = 0) : _val(v) { }
+    Integer(const Integer& v) : _val(v._val) { cout<<"Copy Constructor Called"<<endl; }
     Integer& operator++()
     {
         ++_val;
@@ -33,6 +34,8 @@ int main()
     (++(++k));
 
     cout<<k<<endl;
+
+    k = 30;
 
     ((k++)++);
 
