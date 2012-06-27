@@ -1,11 +1,20 @@
 #include <iostream>
+#include <execinfo.h>
 using namespace std;
 
 class Integer
 {
 public:
     Integer(int v = 0) : _val(v) { }
-    Integer(const Integer& v) : _val(v._val) { cout<<"Copy Constructor Called"<<endl; }
+    Integer(const Integer& v) : _val(v._val) 
+    { 
+        cout<<"Copy Constructor Called with value "<<_val<<endl;
+        cout<<"Stack Trace"<<endl;
+
+        void* btarray[10];
+        size_t size = backtrace(btarray, 10);
+        backtrace_symbols_fd(array, size, 2);
+    }
     Integer& operator++()
     {
         ++_val;
