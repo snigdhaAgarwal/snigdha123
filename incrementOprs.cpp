@@ -32,11 +32,11 @@ int main()
     Integer k = 20;
     (++(++k));
 
-    cout<<k;
+    cout<<k<<endl;
 
     ((k++)++);
 
-    cout<<k;
+    cout<<k<<endl;
 
     return 0;
 }
