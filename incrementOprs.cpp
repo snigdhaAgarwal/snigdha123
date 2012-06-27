@@ -13,7 +13,7 @@ public:
 
         void* btarray[10];
         size_t size = backtrace(btarray, 10);
-        backtrace_symbols_fd(array, size, 2);
+        backtrace_symbols_fd(btarray, size, 2);
     }
     Integer& operator++()
     {
