@@ -1,20 +1,11 @@
 #include <iostream>
-#include <execinfo.h>
 using namespace std;
 
 class Integer
 {
 public:
     Integer(int v = 0) : _val(v) { }
-    Integer(const Integer& v) : _val(v._val) 
-    { 
-        cout<<"Copy Constructor Called with value "<<_val<<endl;
-        cout<<"Stack Trace"<<endl;
-
-        void* btarray[10];
-        size_t size = backtrace(btarray, 10);
-        backtrace_symbols_fd(array, size, 2);
-    }
+    Integer(const Integer& v) : _val(v._val) { }
     Integer& operator++()
     {
         ++_val;
@@ -27,6 +18,12 @@ public:
         ++(*this);
         return ans;
     }
+
+    operator int()
+    {
+        return _val;
+    }
+    
     friend ostream& operator<<(ostream& os, const Integer& i);
 private:
     int _val;
@@ -44,11 +41,9 @@ int main()
 
     cout<<k<<endl;
 
-    k = 30;
+    Integer k1 = 30;
 
-    ((k++)++);
-
-    cout<<k<<endl;
+    cout<<k + k1<<endl;
 
     return 0;
 }
