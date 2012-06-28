@@ -19,64 +19,43 @@ class overflow:public exception
             return("overlow error..");
         }
 };
+
 typedef struct node
-
 {
-
     int value;
-
     struct node* next;
-
 } stack;
 
 
-
 stack* create_stack()
-
 {
-
     return NULL;
-
 }
-
-
 
 stack* push(stack* s, int data)
-
 {
-
     stack* newnode = (stack*)malloc(sizeof(stack));
-
     newnode->value = data;
-
     newnode->next  = s;
-
     return newnode;
-
 }
 
-
-
-stack* pop(stack* s)throw()
-
+stack* pop(stack* s)
 {
-
     stack* newstart = s->next;
-
     free(s);
-
     return newstart;
-
 }
-
 
 int main()
 {
     stack* s = create_stack();
     for(int i=3;i<10;i++)
     {
-        try{
-             s=push(s,i);        }
+        try
+        {
+             s=push(s,i);        
+        }
         catch(overflow &e)
         {
             cout<<e.what()<<endl;
