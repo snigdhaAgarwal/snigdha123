@@ -3,10 +3,10 @@
 #include<cstdlib>
 #include<string>
 
-class underflow : public std::exception
+class stack_exception : public std::exception
 {
     public:
-        underflow(const std::string& message = "underflow error")
+        stack_exception(const std::string& message = "stack error")
             : m_msg(message.c_str())
         { }
         const char* what() throw()
@@ -17,18 +17,18 @@ class underflow : public std::exception
         const char* m_msg;
 };
 
-class overflow : public std::exception
+class underflow : public stack_exception
 {
-    public:
-        overflow(const std::string& message = "overflow error")
-            : m_msg(message.c_str())
-        { }
-        const char* what() throw()
-        {
-            return m_msg;
-        }
-    private:
-        const char* m_msg;
+public:
+    underflow(const std::string& message = "underflow error")
+        : stack_exception(message) { }
+};
+
+class overflow : public stack_exception
+{
+public:
+    overflow(const std::string& message = "overflow error")
+        : stack_exception(message) { }
 };
 
 typedef struct node
@@ -47,7 +47,7 @@ stack* push(stack* s, int data)
 {
     stack* newnode = (stack*)malloc(sizeof(stack));
     if(newnode==NULL)
-        throw overflow();
+        throw overflow("Insufficient Memory");
     newnode->value = data;
     newnode->next  = s;
     return newnode;
@@ -60,7 +60,7 @@ int empty(stack* s)
 stack* pop(stack* s)
 {
     if(empty(s))
-        throw underflow("Poping from empty stack");
+        throw underflow();
     stack* newstart = s->next;
     free(s);
     return newstart;
