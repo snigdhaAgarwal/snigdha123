@@ -35,9 +35,14 @@ stack* create_stack()
 stack* push(stack* s, int data)
 {
     stack* newnode = (stack*)malloc(sizeof(stack));
-    newnode->value = data;
-    newnode->next  = s;
-    return newnode;
+    if(newnode==NULL)
+        throw overflow();
+    else
+    {
+        newnode->value = data;
+        newnode->next  = s;
+        return newnode;
+    }
 }
 int empty(stack* s)
 {
@@ -47,7 +52,7 @@ int empty(stack* s)
 }
 stack* pop(stack* s)
 {
-    if(empty(s)==1)
+    if(empty(s))
         throw underflow();
     else
     {
