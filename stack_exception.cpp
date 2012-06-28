@@ -39,19 +39,22 @@ stack* push(stack* s, int data)
     newnode->next  = s;
     return newnode;
 }
-
-stack* pop(stack* s)
-{
-    stack* newstart = s->next;
-    free(s);
-    return newstart;
-}
 int empty(stack* s)
-
 {
 
     return (s == NULL);
 
+}
+stack* pop(stack* s)
+{
+    if(empty(s)==1)
+        throw underflow();
+    else
+    {
+        stack* newstart = s->next;
+        free(s);
+        return newstart;
+    }
 }
 int main()
 {
@@ -71,9 +74,7 @@ int main()
     {
         try
         {
-            if(empty(s)==1)
-                throw underflow();
-            else
+         
                 s=pop(s);
         }
         catch(underflow &e1)
