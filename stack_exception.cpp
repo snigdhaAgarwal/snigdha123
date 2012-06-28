@@ -46,7 +46,13 @@ stack* pop(stack* s)
     free(s);
     return newstart;
 }
+int empty(stack* s)
 
+{
+
+    return (s == NULL);
+
+}
 int main()
 {
     stack* s = create_stack();
@@ -65,7 +71,10 @@ int main()
     {
         try
         {
-            s=pop(s);
+            if(empty(s)==1)
+                throw underflow();
+            else
+                s=pop(s);
         }
         catch(underflow &e1)
         {
