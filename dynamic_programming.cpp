@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cassert>
+#include <algorithm>
 using namespace std;
 
 int fibonacci(int n)
@@ -47,7 +48,39 @@ void fibonacci_test()
     }
 }
 
+int LongestCommonSubsequence(const string& X, const string& Y)
+{
+    int l1 = X.length();
+    int l2 = Y.length();
+
+    if(l1 == 0 || l2 == 0)
+    {
+        return 0;
+    }
+
+    if(X[l1 - 1] == Y[l2 - 1]) // last character same
+    {
+        return 1 + LongestCommonSubsequence(X.substr(0, l1 - 1), Y.substr(0, l2 - 1));
+    }
+    else
+    {
+        return max(LongestCommonSubsequence(X.substr(0, l1 - 1), Y), LongestCommonSubsequence(X, Y.substr(0, l2 - 1)));
+    }
+}
+
+void LCS_test()
+{
+    cout<<"LCS of "<<"carbon"<<" and "<<"argon"<<" is "<<LongestCommonSubsequence("carbon", "argon")<<endl;
+    cout<<"LCS of "<<"carbon"<<" and "<<"argonc"<<" is "<<LongestCommonSubsequence("carbon", "argonc")<<endl;
+}
+
 int main()
 {
+    cout<<"Fibonacci"<<endl;
     fibonacci_test();
+
+    cout<<"LCS"<<endl;
+    LCS_test();
+
+    return 0;
 }
