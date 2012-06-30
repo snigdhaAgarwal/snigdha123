@@ -48,7 +48,7 @@ void func(const string& x,const string &y)
 }
 int main()
 {
-    char *st1=NULL,*st2=NULL;
+    string st1,st2;
     cin>>st1;
     cin>>st2;
     func(st1,st2);
