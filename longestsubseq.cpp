@@ -6,13 +6,15 @@ void func(const string& x,const string &y)
     int l2=y.length();
     string st[l1];
     int a=0;
-    int p;
+    int p=-1;
     for(int i=0;i<l1;i++)
     {
         int oldi=i;
         for(int j=0;j<l2;j++)
         {
-            if(x[i]==y[j])
+            if(i==l1)
+		break;
+            else if(x[i]==y[j])
             {
                 st[a]+=y[j];
                 i++;
@@ -30,11 +32,6 @@ void func(const string& x,const string &y)
     int max=0,maxi=0;
     for(int i=0;i<a;i++)
     {
-       /* int j=0;
-        while(st[i][j]!='#')
-        {
-            j++;
-        }*/
         int j=st[i].length();
         if(max<j)
         {
@@ -42,7 +39,7 @@ void func(const string& x,const string &y)
             maxi=i;
         }
     }
-    cout<<"max subsequence is "<<max<<" and the subsequence is "<<st[maxi]; 
+    cout<<"max subsequence is "<<max<<" and the subsequence is "<<st[maxi]<<endl; 
 }
 int main()
 {
