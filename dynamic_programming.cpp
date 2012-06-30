@@ -68,10 +68,36 @@ int LongestCommonSubsequence(const string& X, const string& Y)
     }
 }
 
+int LCS(const string& X, const string& Y)
+{
+    int l1 = X.length();
+    int l2 = Y.length();
+
+    int dp_array[l1+1][l2+1];
+
+    for(int i = 0;i <= l1;i++)
+    {
+        for(int j = 0;j <= l2;j++)
+        {
+            if(i == 0 || j == 0)
+                dp_array[i][j] = 0;
+            else
+            {
+                if(X[i-1] == Y[j-1]) // -1 because we i = 0 means no characters, ith character will correspond to i-1 index
+                    dp_array[i][j] = dp_array[i-1][j-1] + 1;
+                else
+                    dp_array[i][j] = max(dp_array[i-1][j], dp_array[i][j-1]);
+            }
+        }
+    }
+    return dp_array[l1][l2];
+}
+
 void LCS_test()
 {
-    cout<<"LCS of "<<"carbon"<<" and "<<"argon"<<" is "<<LongestCommonSubsequence("carbon", "argon")<<endl;
-    cout<<"LCS of "<<"carbon"<<" and "<<"argonc"<<" is "<<LongestCommonSubsequence("carbon", "argonc")<<endl;
+    cout<<"LCS of "<<"carbon"<<" and "<<"argon"<<" is "<<LCS("carbon", "argon")<<endl;
+    cout<<"LCS of "<<"carbon"<<" and "<<"argonc"<<" is "<<LCS("carbon", "argonc")<<endl;
+    cout<<"LCS of "<<"aabbccddee"<<" and "<<"abcdeabcde"<<" is "<<LCS("aabbccddee", "abcdeabcde")<<endl;
 }
 
 int main()
