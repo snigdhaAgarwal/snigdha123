@@ -14,7 +14,7 @@ void find_lis(vector<int> &a, vector<int> &b)
 	for (size_t i = 1; i < a.size(); i++) 
     {
         // If next element a[i] is greater than last element of current longest subsequence a[b.back()], just push it at back of "b" and continue
-		if (a[b.back()] < a[i]) 
+		if (a[b.back()] <= a[i]) 
         {
 			p[i] = b.back();
 			b.push_back(i);
@@ -26,11 +26,11 @@ void find_lis(vector<int> &a, vector<int> &b)
 		for (u = 0, v = b.size()-1; u < v;) 
         {
 			int c = (u + v) / 2;
-			if (a[b[c]] < a[i]) u=c+1; else v=c;
+			if (a[b[c]] <= a[i]) u=c+1; else v=c;
 		}
         
         // Update b if new value is smaller then previously referenced value 
-		if (a[i] < a[b[u]]) 
+		if (a[i] <= a[b[u]]) 
         {
 			if (u > 0) p[i] = b[u-1];
 			b[u] = i;
