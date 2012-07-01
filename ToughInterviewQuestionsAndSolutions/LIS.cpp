@@ -40,20 +40,17 @@ vector<T> LIS(const vector<T>& seq)
     {
         // If seq[i] is greater or equal to than current longest subsequence seq[lis_indices.back()]
         // just add it to the LIS Sequence
-        if(seq[i] > seq[lis_indices.back()])
+        if(seq[i] >= seq[lis_indices.back()])
         {
             p[i] = lis_indices.back();
             lis_indices.push_back(i);
         }
         else
         {
-            // find k such that k is in the LIS and k is just >= than seq[i]
-            size_t k = upper_bound(lis_indices.begin(), lis_indices.end(), seq[i], l) - lis_indices.begin();
+            // find k such that k is in the LIS and k is just > than seq[i]. upper_bound does just that
+            size_t k = upper_bound(lis_indices.begin(), lis_indices.end(), i, l) - lis_indices.begin();
 
-            if(seq[lis_indices[k-1]] == seq[i] && seq[lis_indices[k]] != seq[i])
-                --k;
-
-            if(seq[lis_indices[k]] > seq[i])
+            if(seq[lis_indices[k]] >= seq[i])
             {
                 if(k > 0)
                     p[i] = lis_indices[k - 1];
@@ -62,10 +59,14 @@ vector<T> LIS(const vector<T>& seq)
         }
     }
 
-    vector<T> answer;
-    for(int i = 0;i < lis_indices.size();i++)
+    vector<T> answer(lis_indices.size());
+    int i = lis_indices.size() - 1;
+    int val = lis_indices[i];
+    while(i >= 0)
     {
-        answer.push_back(seq[lis_indices[i]]);
+        answer[i] = seq[val];
+        val = p[val];
+        --i;
     }
 
     return answer;
