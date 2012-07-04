@@ -18,16 +18,19 @@ int main()
 		else if(seq[i]<seq[i-1])
 		{
 			int j=i-1;
-			while(seq[j]>seq[i])
+			while(seq[j]>seq[i] && j>0)
 				j--;
-			l[i]=l[j]+1;
+			if(j==0)
+				l[i]=1;
+			else
+				l[i]=l[j]+1;
 		}
 	}
 	int max;
 	for(int i=1;i<size;i++)
 	{
 		max=l[0];
-		cout<<l[i]<<' ';
+//		cout<<l[i]<<' ';
 		if(max<l[i])
 			max=l[i];
 	}
