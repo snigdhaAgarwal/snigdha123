@@ -4,16 +4,16 @@
 using namespace std;
 int main()
 {
-	vector<int> seq;
 	int size;
 	cin>>size;
+	vector<int> seq(size);
 	for(int i=0;i<size;i++)
 		cin>>seq[i];
-	vector<int> l;
+	vector<int> l(size);
 	l[0]=1;
 	for(int i=1;i<size;i++)
 	{
-		if(seq[i]>seq[i-1])
+		if(seq[i]>=seq[i-1])
 			l[i]=l[i-1]+1;
 		else if(seq[i]<seq[i-1])
 		{
@@ -27,6 +27,7 @@ int main()
 	for(int i=1;i<size;i++)
 	{
 		max=l[0];
+		cout<<l[i]<<' ';
 		if(max<l[i])
 			max=l[i];
 	}
