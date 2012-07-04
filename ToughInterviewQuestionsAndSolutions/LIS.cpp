@@ -74,9 +74,12 @@ vector<T> LIS(const vector<T>& seq)
 
 int main()
 {
-    int arr[] = { 1, 9, 3, 8, 11, 3, 4, 5, 6, 4, 19, 7, 1, 7 };
-    
-    vector<int> seq(arr, arr + SIZEOF_ARRAY(arr));
+    vector<int> seq;
+    int number;
+    while(cin>>number)
+    {
+        seq.push_back(number);
+    }
     vector<int> lis = LIS(seq);
 
     // Print the output
