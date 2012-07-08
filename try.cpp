@@ -5,7 +5,7 @@
 #include<vector>
 using namespace std;
 
-template <typename _T>
+template <typename _T, class container>
 class Stack
 {
 	public:
@@ -31,12 +31,12 @@ class Stack
 		}
 
 	private:
-		vector<_T> v1;
+		container v1;
 };
 
 int main()
 {
-    Stack<int> s;
+    Stack<int, vector<int> > s;
     int d;
     while(cin>>d)
     {
