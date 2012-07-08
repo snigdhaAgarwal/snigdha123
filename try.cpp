@@ -36,21 +36,19 @@ class Stack
 
 int main()
 {
-	/*	Stack<int> s;
-		int d;
-		while(cin>>d)
-		{
-		s.push(d);
-		}
-		while(!s.empty())
-		{
-		cout<<s.top()<<endl;
-		s.pop();
-		}
-		*/
-	cout<<"problem sir";
-	/*#ifdef WIN32
-	  system("PAUSE");
+    Stack<int> s;
+    int d;
+    while(cin>>d)
+    {
+        s.push(d);
+    }
+    while(!s.empty())
+    {
+        cout<<s.top()<<endl;
+        s.pop();
+    }
+#ifdef WIN32
+    system("PAUSE");
 #endif // WIN32
-	return 0;*/
+    return 0;
 }
