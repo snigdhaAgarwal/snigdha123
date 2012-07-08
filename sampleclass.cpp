@@ -1,39 +1,78 @@
+// SampleCpp.cpp : Defines the entry point for the console application.
+//
+
 #include <iostream>
+
 using namespace std;
 
 template <typename _T>
-class Point
+class Stack
 {
 public:
-    Point(const _T& x, const _T& y);
-    Point operator+(const Point& p);
-    template <typename T>
-    friend ostream& operator<<(ostream& os, const Point<T>& p);
+    Stack() : start(NULL) { }
+	~Stack()
+	{
+		Node* temp = start;
+		while(start != NULL)
+		{
+			start = start->m_next;
+			delete temp;
+			temp = start;
+		}
+	}
+
+	void push(const _T& elem)
+	{
+		Node* n = new Node(elem, start);
+		start = n;
+	}
+
+	void pop()
+	{
+		Node* t = start;
+		start = start->m_next;
+		delete t;
+	}
+
+	const _T& top() const
+	{
+		return start->m_data;
+	}
+
+	bool empty() const
+	{
+		return (start == NULL);
+	}
+
 private:
-    _T x, y;
+	struct Node
+	{
+		_T    m_data;
+		Node* m_next;
+		Node(const _T& data, Node* next)
+			: m_data(data), m_next(next) { }
+	};
+
+	Node* start;
 };
-
-template <typename _T>
-Point<_T>::Point(const _T& x, const _T& y)
-    : x(x), y(y)
-{ }
-
-template <typename _T>
-Point<_T> Point<_T>::operator+(const Point<_T>& p)
-{
-    return Point(x + p.x, y + p.y);
-}
-
-template <typename _T>
-ostream& operator<<(ostream& os, const Point<_T>& p)
-{
-    os<<"("<<p.x<<", "<<p.y<<")";
-}
 
 int main()
 {
-    Point<int> p1(3,4), p2(6,8);
-    cout<<p1<<", "<<p2<<endl;
-    cout<<p1 + p2<<endl;
-    return 0;
+	Stack<int> s;
+	int d;
+	while(cin>>d)
+	{
+		s.push(d);
+	}
+
+	while(!s.empty())
+	{
+		cout<<s.top()<<endl;
+		s.pop();
+	}
+
+#ifdef WIN32
+	system("PAUSE");
+#endif // WIN32
+	return 0;
 }
