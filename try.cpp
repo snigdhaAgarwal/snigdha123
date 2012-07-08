@@ -37,7 +37,7 @@ return v1[v1.size()-1];
 	}
 
 private:
-vector v1;
+vector<_T> v1;
 };
 
 int main()
