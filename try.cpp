@@ -2,41 +2,41 @@
 //
 
 #include <iostream>
-#include<vector>
+#include <vector>
 using namespace std;
 
-template <typename _T, class container>
+template <typename _T, template <typename _Ty, class _Ax = allocator<_Ty> > class container>
 class Stack
 {
-	public:
-		Stack() { }
-		void push(const _T& elem)
-		{
-			v1.push_back(elem);
-		}
+    public:
+        Stack() { }
+        void push(const _T& elem)
+        {
+            v1.push_back(elem);
+        }
 
-		void pop()
-		{
-			v1.pop_back();
-		}
+        void pop()
+        {
+            v1.pop_back();
+        }
 
-		const _T& top() const
-		{
-			return v1[v1.size()-1];
-		}
+        const _T& top() const
+        {
+            return v1[v1.size()-1];
+        }
 
-		bool empty() const
-		{
-			return (v1.front() == NULL);
-		}
+        bool empty() const
+        {
+            return (v1.front() == NULL);
+        }
 
-	private:
-		container v1;
+    private:
+        container<_T> v1;
 };
 
 int main()
 {
-    Stack<int, vector<int> > s;
+    Stack<int, vector> s;
     int d;
     while(cin>>d)
     {
