@@ -8,8 +8,11 @@ class matrix
 		{
 			T **mat=new T*[x];
 			for(int i=0;i<x;i++)
+			{
+				mat[i] = new T[y];
 				for(int j=0;j<y;j++)
 					mat[i][j]=0;
+			}
 		}
 
 	private:
