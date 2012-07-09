@@ -16,7 +16,8 @@ class matrix
 					mat[i][j]=0;
 			}
 		}
-		friend std::istream& operator>>(std::istream& is, const matrix<T>& m);
+		template<typename T1>
+		friend std::istream& operator>>(std::istream& is, const matrix<T1>& m);
 	private:
 		T **mat;
 		int x,y;
