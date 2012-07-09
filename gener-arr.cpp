@@ -24,6 +24,18 @@ void print<char>(char *arr,int size)
 	}
 }
 
+template <int n>
+struct factorial
+{
+	enum { value = n * factorial<n-1>::value };
+};
+
+template <>
+struct factorial<0>
+{
+	enum { value = 1 };
+};
+
 int main()
 {
 //	vector<char> arr;
@@ -34,4 +46,5 @@ int main()
 	int arr1[] = { 1, 2, 3, 4, 5 };
 	print(arr1,5);
 	cout<<endl;
+	cout<<factorial<10>::value<<endl;
 }
