@@ -8,23 +8,28 @@ class point
     public:
         point(int x1,int y1):x(x1),y(y1){}
         int x,y;
-        std::istream& operator>>(std::istream& is,point& p)
-        {
-            is>>p.x>>p.y;
-       //     is>>p.y;
-            return is;
-        }
-        int operator==(const point &p1)
+        
+        bool operator==(const point &p1) const
         {
             if(p1.x==x && p1.y==y)
                 return 1;
             return 0;
         }
-     /*   std::ostream& operator<<(std::ostream& os,point &p)
-        {
-            return os
-        }*/
 };
+
+std::istream& operator>>(std::istream& is,point& p)
+{
+    // p.x and p.y are public. Hence no need to be friend
+    is>>p.x>>p.y;
+    return is;
+}
+
+std::ostream& operator<<(std::ostream os, const point& p)
+{
+    // p.x and p.y are public. Hence no need to be friend
+    os<<"("<<p.x<<", "<<p.y<<")";
+    return os;
+}
 
 int main()
 {
