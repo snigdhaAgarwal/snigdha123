@@ -21,6 +21,9 @@ class matrix
 		T **mat;
 		int x,y;
 };
+
+
+template <typename T>
 std::istream& operator>>(std::istream& is, const matrix<T>& m)
 {
 	for(int i=0;i<m.x;i++)
@@ -28,6 +31,7 @@ std::istream& operator>>(std::istream& is, const matrix<T>& m)
 			is>>m.mat[i][j];
 	return is;
 }
+
 int main()
 {
 	matrix<int> m(2,3);
