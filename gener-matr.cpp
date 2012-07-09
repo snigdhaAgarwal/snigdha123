@@ -4,8 +4,9 @@ template <typename T>
 class matrix
 {
 	public:
-		matrix(int x,int y)
-		{ 
+		matrix(int x,const int y)
+		{
+			T **mat=new T[x][y];
 			for(int i=0;i<x;i++)
 				for(int j=0;j<y;j++)
 					mat[i][j]=0;
@@ -16,5 +17,5 @@ class matrix
 };
 int main()
 {
-	matrix<int>(2,3) m;
+	matrix<int> m(2,3);
 }
