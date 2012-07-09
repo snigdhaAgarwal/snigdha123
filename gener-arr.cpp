@@ -16,6 +16,6 @@ int main()
 //	vector<char> arr;
 //	for(int i=0;i<5;i++)
 //		cin>>arr[i];
-char arr[]={'a', 'b', 'c', 'd', 'e' };	
-print<char> (arr,5);
+	char arr[]={'a', 'b', 'c', 'd', 'e' };	
+	print(arr,5);
 }
