@@ -6,7 +6,7 @@ class matrix
 	public:
 		matrix(int x,int y):x(x),y(y)
 		{
-			T **mat=new T*[x];
+			T mat=new T*[x];
 			for(int i=0;i<x;i++)
 			{
 				mat[i] = new T[y];
