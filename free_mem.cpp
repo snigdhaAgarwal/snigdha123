@@ -3,12 +3,17 @@ using namespace std;
 template<typename t>
 class pointer
 {
-pointer():p(NULL)
-{}
-private:
-t *p;
+	public:
+		pointer():p(NULL)
+	{}
+		~pointer()
+		{
+			delete(p);
+		}
+	private:
+		t *p;
 };
 int main()
 {
-pointer<int> p1;
+	pointer<int> p1;
 }
