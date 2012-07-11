@@ -13,6 +13,11 @@ class pointer
 		{
             return p;
 		}
+const pointer& operator=(const pointer& p1)
+{
+p=p1.p;
+return (* this);
+}
 		t& operator*()
 		{
             return (*p);
