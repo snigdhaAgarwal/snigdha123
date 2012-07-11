@@ -4,18 +4,18 @@ template<typename t>
 class pointer
 {
 	public:
-		pointer():p(NULL)
-	{}
+		pointer() : p(NULL) {}
 		~pointer()
 		{
-			delete(p);
+			delete p;
 		}
 		t* operator->()
 		{
-
+            return p;
 		}
 		t& operator*()
 		{
+            return (*p);
 		}
 	private:
 		t *p;
