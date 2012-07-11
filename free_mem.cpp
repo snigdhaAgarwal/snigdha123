@@ -10,6 +10,13 @@ class pointer
 		{
 			delete(p);
 		}
+		t* operator->()
+		{
+
+		}
+		t& operator*()
+		{
+		}
 	private:
 		t *p;
 };
