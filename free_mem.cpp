@@ -4,28 +4,28 @@ template<typename t>
 class pointer
 {
 	public:
-		pointer() : p(NULL) {}
+		pointer(t *p1) : p(p1) {}
 		~pointer()
 		{
 			delete p;
 		}
 		t* operator->()
 		{
-            return p;
+			return p;
 		}
-const pointer& operator=(const pointer& p1)
-{
-p=p1.p;
-return (* this);
-}
+		const pointer& operator=(t *p1)
+		{
+			p=p1.p;
+			return (* this);
+		}
 		t& operator*()
 		{
-            return (*p);
+			return (*p);
 		}
 	private:
 		t *p;
 };
 int main()
 {
-	pointer<int> p1;
+	pointer<int> p=new int;
 }
