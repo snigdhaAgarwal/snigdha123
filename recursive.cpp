@@ -7,7 +7,7 @@ int gcd(int a,int b)
         if(a%b==0)
             return b;
         else 
-            return gcd(a,a%b);
+            return gcd(b,a%b);
     }
     else 
     {
@@ -30,6 +30,6 @@ int main()
 {
     int x=ncr(5,3);
     cout<<x<<endl;
-    int p=gcd(12,42);
+    int p=gcd(58,26);
     cout<<p<<endl;
 }
