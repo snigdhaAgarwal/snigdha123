@@ -1,5 +1,22 @@
 #include<iostream>
 using namespace std;
+int p=0;
+int binsearch(int high,int low,int *a,int x)
+{
+    int mid=(high+low)/2;
+    if(low>high)
+    {
+        cout<<"not found"<<endl;
+        return -1;
+    }
+    else if(a[mid]>x)
+        p=binsearch(mid-1,low,a,x);
+    else if(a[mid]<x)
+        p=binsearch(high,mid+1,a,x);
+    else if(a[mid]==x)
+        return mid+1;
+    return p;
+}
 int gcd(int a,int b)
 {
     if(a%b==0 || b == 0) // in case b == 0, we may run into divison by 0
@@ -20,6 +37,27 @@ int main()
 {
     int x=ncr(5,3);
     cout<<x<<endl;
-    int p=gcd(58,26);
-    cout<<p<<endl;
+    int m=gcd(58,26);
+    cout<<m<<endl;
+    int temp;
+    int a[] = {4,6,1,72,8,3,11,9};
+    for(int i=0;i<7;i++)
+        for(int j=i+1;j<8;j++)
+        {
+            if(a[i]>a[j])
+            {
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+    for(int i=0;i<8;i++)
+        cout<<a[i]<<' ';
+    cout<<endl;
+    cout<<"enter value:";
+    int val;
+    cin>>val;
+    int pos=binsearch(7,0,a,val);
+    if(pos!=-1)
+        cout<<"value is at pos :"<<pos<<endl;
 }
