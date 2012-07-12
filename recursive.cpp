@@ -2,22 +2,12 @@
 using namespace std;
 int gcd(int a,int b)
 {
-    if(a>b)
-    {
-        if(a%b==0)
-            return b;
-        else 
-            return gcd(b,a%b);
-    }
-    else 
-    {
-        if(b%a==0)
-            return a;
-        else
-            return gcd(b%a,a);
-
-    }
+    if(a%b==0 || b == 0) // in case b == 0, we may run into divison by 0
+        return b;
+    else
+        return gcd(b,a%b);
 }
+
 int ncr(int n,int r)
 {
     if(r>n)
