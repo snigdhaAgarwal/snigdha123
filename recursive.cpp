@@ -28,7 +28,7 @@ int binsearch(int high,int low,int *a,int x)
 template <typename T>
 T* binsearch(T* begin, T* end, int x)
 {
-    T* mid = begin + (end - begin) / 2; // pointer division is not support by all compilers. to be safe did this
+    T* mid = begin+(end - begin) / 2; // pointer division is not support by all compilers. to be safe did this
     if(begin >= end)
         return NULL;
     else if(*mid > x)
@@ -46,7 +46,33 @@ int gcd(int a,int b)
     else
         return gcd(b,a%b);
 }
-
+void mergesort(int *a,int *end,int size)
+{
+    if(size==0||size==1)
+        return;
+    else
+    {
+        mergesort(a,a+(end-a)/2,1+(end-a)/2);
+        mergesort(a+1+(end-a)/2,end,end-(a+1+(end-a)/2)+1);
+        int i=0;
+        int index=0;
+        int arr[size];
+        int j=1+(end-a)/2;
+        while(a+i<=a+(end-a)/2 && a+j<=end)
+        {
+            if(a[i]<a[j])
+                arr[index++]=a[i++];
+            else 
+                arr[index++]=a[j++];
+        }
+        while(a+i <= a+(end-a)/2)
+            arr[index++]=a[i++];
+        while(a+j<=end)
+            arr[index++]=a[j++];
+        for(int i=0;a+i<=end;i++)
+            a[i]=arr[i];
+    }
+}
 int ncr(int n,int r)
 {
     if(r>n)
@@ -61,18 +87,8 @@ int main()
     cout<<x<<endl;
     int m=gcd(58,26);
     cout<<m<<endl;
-    int temp;
     int a[] = {4,6,1,72,8,3,11,9};
-    for(int i=0;i<7;i++)
-        for(int j=i+1;j<8;j++)
-        {
-            if(a[i]>a[j])
-            {
-                temp=a[i];
-                a[i]=a[j];
-                a[j]=temp;
-            }
-        }
+    mergesort(a,a+7,8);
     for(int i=0;i<8;i++)
         cout<<a[i]<<' ';
     cout<<endl;
