@@ -6,6 +6,12 @@ int binsearch(int high,int low,int *a,int x)
     int mid=(high+low)/2;
     if(low>high)
     {
+        // ideally while creating functions, it isn't good to write print statements.
+        // if you want you can write after the function returns from where it is called.
+        // this is because, the caller cannot get the printed value.
+        //
+        // There is something called logging where we print just for debugging purposes
+        // but logging is disabled on final output. Will cover logging this weekend.
         cout<<"not found"<<endl;
         return -1;
     }
