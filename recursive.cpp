@@ -17,6 +17,22 @@ int binsearch(int high,int low,int *a,int x)
         return mid+1;
     return p;
 }
+
+// Binary Search With Templates and pointers
+template <typename T>
+T* binsearch(T* begin, T* end, int x)
+{
+    T* mid = begin + (end - begin) / 2; // pointer division is not support by all compilers. to be safe did this
+    if(begin >= end)
+        return NULL;
+    else if(*mid > x)
+        return binsearch(begin, mid, x);
+    else if(*mid < x)
+        return binsearch(mid + 1, end, x);
+    else
+        return mid;
+}
+
 int gcd(int a,int b)
 {
     if(a%b==0 || b == 0) // in case b == 0, we may run into divison by 0
@@ -60,4 +76,12 @@ int main()
     int pos=binsearch(7,0,a,val);
     if(pos!=-1)
         cout<<"value is at pos :"<<pos<<endl;
+    int* elem=binsearch(a, a + 8, 100);
+    cout<<elem<<" "<<(elem != NULL ? *elem : -1)<<endl;
+    elem=binsearch(a, a + 8, 72);
+    cout<<elem<<" "<<(elem != NULL ? *elem : -1)<<endl;
+    elem=binsearch(a, a + 8, 1);
+    cout<<elem<<" "<<(elem != NULL ? *elem : -1)<<endl;
+    elem=binsearch(a, a + 8, -10);
+    cout<<elem<<" "<<(elem != NULL ? *elem : -1)<<endl;
 }
