@@ -2,6 +2,8 @@
 using namespace std;
 class tree
 {
+private:
+	class node;
 public:
 	tree():t(NULL)
 	{}
