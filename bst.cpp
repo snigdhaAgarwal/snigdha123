@@ -3,9 +3,11 @@ using namespace std;
 class tree
 {
 	public:
+		tree():t(NULL)
+		{}
 		void insert(int x)
 		{
-			node* t2=new node;
+			node* t2=new node(x);
 			if(t==NULL)
 				t=t2;
 			else
@@ -41,10 +43,10 @@ class tree
 		class node
 		{
 			public:
-			tree *right;
-			tree* left;
+			node *right;
+			node* left;
 			int data;
-			node():left(NULL),right(NULL),data(0)
+			node(int x):left(NULL),right(NULL),data(x)
 			{}
 		};
 		node *t;
