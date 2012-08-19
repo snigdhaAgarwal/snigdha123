@@ -193,7 +193,7 @@ if __name__ == "__main__":
         else:
             output = commands[args[0]](args[1])
             if args[0] == "search":
-                # special priting required
+                # special printing required
                 # output is a tuple of a boolean and a list
                 if output[0]:
                     # if it was found, output[1] contains a list contianing just the count
