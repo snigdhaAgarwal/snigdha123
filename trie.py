@@ -1,4 +1,3 @@
-#!/usr/bin/evn python
 class trie:
     def __init__(self):
         '''Create an empty trie structure'''
