@@ -7,7 +7,7 @@ char arg[1024]={};
 void prompt(char *arg)
 {
     char path[1024],homedir[1024];
-    strcpy(path,get_current_dir_name());
+    getcwd(path,1024);
     printf("%s\n",path);
     strcpy(homedir,arg);
     if(strcmp(path,homedir) == 0)
@@ -30,18 +30,18 @@ void handle_signal(int signo)
 }
 void ex()
 {
-
 }
-int main(int argc, char *argv[], char *envp[])
+int main(int argc, char *argv[])
 {
     signal(SIGTSTP, SIG_IGN);
     signal(SIGINT,  handle_signal);
     char command[1024];
     char dir[1024];
-    strcpy(arg,get_current_dir_name());
+    getcwd(arg,1024);
     prompt(arg);
     char **td=NULL;
     td = calloc(1024,sizeof(char*));
+    int i;
     for(i=0;i<1024;i++)
     {
         td[i] = calloc(1024,sizeof(char));
@@ -59,7 +59,7 @@ int main(int argc, char *argv[], char *envp[])
         }
         if(strcmp(*td,"pid")==0)
         {
-            printf("command name:./a.out process id:%ld\n",getpid());
+            printf("command name: %s process id:%ld\n",argv[0],getpid());
             fflush(stdout);
         }
         else if(strcmp(*td,"cd")==0)
