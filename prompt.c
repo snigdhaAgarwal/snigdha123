@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <string.h>
+#include <errno.h>
 char arg[1024]={};
 void prompt(char *arg)
 {
@@ -39,20 +40,16 @@ int main(int argc, char *argv[])
     char dir[1024];
     getcwd(arg,1024);
     prompt(arg);
-    char **td=NULL;
-    td = calloc(1024,sizeof(char*));
-    int i;
-    for(i=0;i<1024;i++)
-    {
-        td[i] = calloc(1024,sizeof(char));
-    }
     while(scanf("%[^\n]",command) != EOF) 
     {
         getchar();
-        int i=0;
+        int i=0,j=0;
+        char **td=NULL;
+        td = calloc(1024,sizeof(char*));
         char* token=strtok(command," \t");
         while(token != NULL)
         {
+            td[i] = calloc(1024,sizeof(char));
             strcpy(td[i],token);
             token = strtok(NULL," \t");
             i++;
@@ -69,13 +66,28 @@ int main(int argc, char *argv[])
         }
         else
         {
-            strcpy(td[i],'\0');
+            td[i] = NULL;
             pid_t pid;
             pid=fork();
             if(pid==0)
-                execvp(td[0],td);
+            {
+                if(execvp(td[0],td) != 0)
+                {
+                    // Print error based on errno, include errno.h
+                    exit(errno);
+                }
+            }
             else
+            {
                 wait();
+            }
+            // Don't forget to free as it will cause memory leaks which can
+            // in turn cause problems in long runs
+            for(j = 0;j < i;j++)
+            {
+                free(td[i]);
+            }
+            free(td);
         }
         prompt(arg);
     }
